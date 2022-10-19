@@ -1,54 +1,114 @@
-class Usuario {
-    constructor(nombre, apellido, libro, mascotas)
+
+
+const fs = require('fs')
+
+
+class Producto {
+ constructor(archivo)
     {
-this.nombre= nombre
-this.apellido= apellido
-this.libro= libro 
-this.mascotas= mascotas 
+  this.archivo= archivo
+
+
    }
 
-   getFullName(){
-    return `${this.nombre} ${this.apellido}`
-   }
-  
-   addMascota(mascota){
-    this.mascotas.push(mascota)
-   }
+save =  async (producto) =>{
+     try{
 
-   countMascotas(){
-    return this.mascotas.length
-   }
+      if (fs.existsSync(this.archivo)) {
 
-   addBook(nombre,autor){ 
-    const libroCreado = {
-        nombre: nombre,
-        autor: autor
+        let archivo =  await fs.promises.readFile(this.archivo,"utf-8")
+        let productosExistentes =  JSON.parse(archivo)
+
+        if (productosExistentes.length>0) {
+            let identificador = productosExistentes[productosExistentes.length-1].id +1
+            let product ={
+                id:identificador,
+                ...producto
+            }
+            productosExistentes.push(product)
+            await fs.promises.writeFile(this.archivo,JSON.stringify(productosExistentes,null,2))
+            return identificador
+        }
+
+        else{
+            let identificador = 1 
+            let product ={
+                id:identificador,
+                ...producto
+            }
+            productosExistentes.push(product)
+            await fs.promises.writeFile(this.archivo,JSON.stringify(productosExistentes,null,2))
+            return identificador
+        }
+
+      
+      }
+
+      else{
+        let product ={
+            id:1,
+            ...producto
+        }
+        await fs.promises.writeFile(this.archivo,JSON.stringify([product],null,2))
+        return 1;
+      }  
+
+     }
+     catch{
+        console.log("error")
+     }
+
+}
+
+getById= async (id)=>{
+    let archivo =  await fs.promises.readFile(this.archivo,"utf-8")
+    let productosExistentes =  JSON.parse(archivo)
+    let MiProducto = productosExistentes.find((el)=> el.id ===id)
+    return MiProducto
+}
+
+getall = async ()=>{
+    let archivo =  await fs.promises.readFile(this.archivo,"utf-8")
+    let productosExistentes =  JSON.parse(archivo)
+    return productosExistentes
+}
+
+deleteById= async (id)=>{
+    let archivo =  await fs.promises.readFile(this.archivo,"utf-8")
+    let productosExistentes =  JSON.parse(archivo)
+    let borrador = productosExistentes.map(el => el.id)
+    let productoEliminar = borrador.indexOf(id)
+    console.log(productoEliminar)
+    productosExistentes.splice(productoEliminar,1)
+    console.log(productosExistentes)
+    await fs.promises.writeFile(this.archivo,JSON.stringify(productosExistentes,null,2))
+}
+
+deleteAll = async (desicion)=>{
+    if(desicion==="si"){
+        let archivo =  await fs.promises.readFile(this.archivo,"utf-8")
+        let productosExistentes =  JSON.parse(archivo)
+         productosExistentes =[]
+        await fs.promises.writeFile(this.archivo,JSON.stringify(productosExistentes,null,2))
     }
-    
-    this.libro.push(libroCreado)
-   }
-
-   getBookNames(){
-    const nombresLibros =  this.libro.map((el) => el.nombre)
-    return nombresLibros
-   
-   }
+}
 
 }
-let objeto={
-    nombre:"Fundación",
-    autor: "Isaac Asimov"
+
+
+const producto = new Producto("Productos.txt")
+
+
+ metodos = async ()=>{
+console.log(await producto.save({nombre:"Cono de Dulce de Leche",precio: 80,categoria:"postre"}))
+console.log(await producto.save({nombre:"Coca Cola Zero (500ml)",precio: 120,categoria:"bebida"}))
+console.log(await producto.save({nombre:"Cono Combinado",precio: 80,categoria:"postre"}))
+console.log(await producto.getById(2))
+console.log(await producto.getById(59))
+console.log(await producto.getall())
+await producto.deleteById(3)
+await producto.deleteAll("si")
 }
-const usuario1 = new Usuario("Don","pepito", [], [])
-usuario1.addMascota("perro")
-usuario1.addMascota("gato")
-usuario1.addMascota("pez")
 
-usuario1.addBook("El señor de las moscas","William Golding")
+metodos()
 
-
-
-console.log(usuario1.getFullName())
-console.log(usuario1.countMascotas())
-console.log(usuario1.getBookNames())
-console.log(usuario1)
