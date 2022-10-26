@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": 1,
+    "nombre": "Cono de Dulce de Leche",
+    "precio": 80,
+    "categoria": "postre"
+  },
+  {
+    "id": 2,
+    "nombre": "Coca Cola Zero (500ml)",
+    "precio": 120,
+    "categoria": "bebida"
+  },
+  {
+    "id": 3,
+    "nombre": "Cono Combinado",
+    "precio": 80,
+    "categoria": "postre"
+  },
+  {
+    "id": 4,
+    "nombre": "Jamón-Bacon Sin Gluten",
+    "precio": 450,
+    "categoria": "pizza"
+  },
+  {
+    "id": 5,
+    "nombre": "Fanta (500ml)",
+    "precio": 115,
+    "categoria": "bebida"
+  }
+]
