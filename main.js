@@ -233,13 +233,21 @@ metodos = async ()=>{
        console.log(`Servidor http escuchando en el puerto ${server.address().port}`)
     })
     server.on("error", error => console.log(`Error en servidor ${error}`))
-    
+debugger  
+
+let product = ``
+    productosTotal.forEach(element => {
+         product += `<div style="display:inline-block; margin:10px;">
+                          <h2>${element.nombre}</h2>
+                          <p>${element.nombre}</p>
+                                                   </div>` })
     aplicacion.get('/productos',(peticion,respuesta)=>{
-        productosTotal.forEach(element => {
-            respuesta.send( productosTotal)
-          });
+
+            respuesta.send( `<h1 style=" text-align: center;">Mis Productos</h1>
+                             <di>${product} </div>`)
+         
         
-    })
+    }) ;
     aplicacion.get('/productoRandom',(peticion,respuesta)=>{
        
         respuesta.send(
