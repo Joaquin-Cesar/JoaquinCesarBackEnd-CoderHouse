@@ -1,0 +1,28 @@
+extends index.pug
+block formulario
+
+    h1="Formularios"
+  
+    div
+        h2="Productos"
+        form(action="productos" method="post")
+            label(for="nombre")="Nombre:"
+            br
+            input(type="text" id="nombre" name="nombre")
+            br
+
+            label(for="imagen")="Imagen:"
+            br
+            input(type="text" id="imagen" name="imagen")
+            br
+      
+            label(for="precio")="Precio:"
+            br
+            input(type="text" id="precio" name="precio")
+            br
+      
+            input(type="submit" value="Enviar")
+   
+    div
+        a(href="/productos")= "Ver productos"
+  

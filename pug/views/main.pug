@@ -1,0 +1,23 @@
+extends index.pug
+
+block main 
+
+    if productosCargados
+        div
+            h1="Cargar Producto"
+        table
+            tr
+                th="Producto"
+                th="Precio"
+                th="Imagen"
+                each producto in productos
+                     tr
+                        td=producto.nombre
+                        td=producto.precio
+                         td
+                             img(src=producto.imagen alt="")
+                
+    else
+        h1="No hay productos"
+    br
+    a(href="/" type="button" class="btn btn-primary")="Cargar un nuevo producto"
