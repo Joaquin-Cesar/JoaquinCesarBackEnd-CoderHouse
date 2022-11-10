@@ -1,0 +1,25 @@
+<% if(productosCargados){ %>
+<div>
+    <h1>Cargar Producto</h1>
+    <table>
+        <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Imagen</th>
+        </tr>
+        
+        <%  productos.forEach(function(producto){ %>
+        <tr>
+            <td><%=producto.nombre%></td>
+            <td><%=producto.precio%></td>
+            <td><img src= <%=producto.imagen%> alt=""></td>
+                
+        </tr>
+        <%  }) %>
+    </table>
+</div>
+<%}else{%>
+<h1>No hay productos</h1>
+<%}%>
+    <br>
+    <a href="/" type="button" class="btn btn-primary">Cargar un nuevo producto</a>
