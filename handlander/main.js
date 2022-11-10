@@ -84,6 +84,12 @@ const producto = new Producto([])
  
 
  
+ const bodyParser = require("body-parser");
+
+ aplicacion.use(bodyParser.urlencoded({ extended: true, limit: "50mb"}));
+ 
+ aplicacion.use(bodyParser.json({ limit: "50mb"}));
+ 
 //Motor de plantilla handlebars
 
 aplicacion.engine("hbs", handlebars.engine({

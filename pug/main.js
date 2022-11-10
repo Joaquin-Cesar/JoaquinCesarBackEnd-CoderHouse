@@ -84,7 +84,12 @@ class Producto {
     
    
     
-   //Motor de plantilla handlebars
+ const bodyParser = require("body-parser");
+
+ aplicacion.use(bodyParser.urlencoded({ extended: true, limit: "50mb"}));
+ 
+ aplicacion.use(bodyParser.json({ limit: "50mb"}));
+
    
    
    
