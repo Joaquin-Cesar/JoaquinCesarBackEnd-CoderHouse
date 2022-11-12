@@ -7,20 +7,25 @@ class Producto {
 
    }
 
-save = (productos) =>{
+   save = (productoImgresado) =>{
      
 
     let id = 1;
+  
     this.productos.forEach(element => {
       if (element.id >= id) {
         id = element.id + 1;
       }
     });
-    productos.id = id;
-    this.productos.push(productos);
-    return id;
+   const productoNuevo ={
+    ...productoImgresado,
+    id: id
+   }
+    console.log("producto",productoImgresado)
+    this.productos.push(productoNuevo);
+    console.log("productoNuevo",productoNuevo)
+ 
   }  
-
      
     
 
