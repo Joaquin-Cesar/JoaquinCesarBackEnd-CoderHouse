@@ -23,7 +23,8 @@ save = (productoImgresado) =>{
    }
     console.log("producto",productoImgresado)
     this.productos.push(productoNuevo);
-    return id;
+    console.log("productoNuevo",productoNuevo)
+ 
   }  
 
      

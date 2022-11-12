@@ -1,25 +1,31 @@
+
+ <%- include('./estilo/estilo')-%>
+
 <% if(productosCargados){ %>
-<div>
-    <h1>Cargar Producto</h1>
-    <table>
-        <tr>
-            <th>Producto</th>
-            <th>Precio</th>
-            <th>Imagen</th>
-        </tr>
-        
-        <%  productos.forEach(function(producto){ %>
-        <tr>
-            <td><%=producto.nombre%></td>
-            <td><%=producto.precio%></td>
-            <td><img src= <%=producto.imagen%> alt=""></td>
-                
-        </tr>
-        <%  }) %>
-    </table>
-</div>
-<%}else{%>
-<h1>No hay productos</h1>
-<%}%>
-    <br>
-    <a href="/" type="button" class="btn btn-primary">Cargar un nuevo producto</a>
+    <section>
+        <h1 class="titulo">Productos</h1>
+
+        <div class='contenedorProductos'>
+            <% productos.forEach(function(producto){ %>
+                <div class='contenedorProducto'>
+                    <h5>
+                        <%=producto.nombre%>
+                    </h5>
+                    <img src=<%=producto.imagen%> alt= <%=producto.nombre%> class="ImagenDelProducto"/>
+                        <div>
+                            <p>
+                                <%=producto.precio%>
+                            </p>
+                        </div>
+                </div>
+                <% }) %>
+        </div>
+    </section>
+    <%}else{%>
+        <h1>No hay productos</h1>
+        <%}%>
+            <br>
+            <div class="enlace">
+                <a href="/" type="button">Cargar un nuevo producto</a>
+            </div>
+  

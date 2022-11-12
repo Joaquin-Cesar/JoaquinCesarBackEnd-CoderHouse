@@ -7,20 +7,25 @@ class Producto {
    
       }
    
-   save = (productos) =>{
-        
-   
-       let id = 1;
-       this.productos.forEach(element => {
-         if (element.id >= id) {
-           id = element.id + 1;
-         }
-       });
-       productos.id = id;
-       this.productos.push(productos);
-       return id;
-     }  
-   
+      save = (productoImgresado) =>{
+     
+
+        let id = 1;
+      
+        this.productos.forEach(element => {
+          if (element.id >= id) {
+            id = element.id + 1;
+          }
+        });
+       const productoNuevo ={
+        ...productoImgresado,
+        id: id
+       }
+        console.log("producto",productoImgresado)
+        this.productos.push(productoNuevo);
+        console.log("productoNuevo",productoNuevo)
+     
+      }  
         
        
    
@@ -98,7 +103,7 @@ class Producto {
    
    aplicacion.post('/productos', (peticion,respuesta) => {
        const productoNuevo = peticion.body;
-                  console.log("productoNuevo",productoNuevo)
+                 
                   producto.save(productoNuevo)
                    respuesta.render("formulario",{});
    })

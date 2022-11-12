@@ -8,17 +8,17 @@ block formulario
         form(action="productos" method="post")
             label(for="nombre")="Nombre:"
             br
-            input(type="text" id="nombre" name="nombre")
+            input(type="text" required="required" pattern="^[A-Za-z]+$" name="nombre")
             br
 
             label(for="imagen")="Imagen:"
             br
-            input(type="text" id="imagen" name="imagen")
+            input(type="url" required="required" name="imagen")
             br
       
             label(for="precio")="Precio:"
             br
-            input(type="text" id="precio" name="precio")
+            input(type="number" required="required" name="precio")
             br
       
             input(type="submit" value="Enviar")
