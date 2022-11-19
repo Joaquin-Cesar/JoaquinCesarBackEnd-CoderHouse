@@ -1,22 +1,31 @@
 const socket = io()
 
-function renderProducto(producto){
-     const titulo = document.createElement("h5")
+const renderProducto  =  (producto)=>{
+  
+  //Creo el contenedor
+  const contenedorHijo= document.createElement("div")  
+  contenedorHijo.id ='contenedorProducto'
+  
+  //Creo el Titulo
+  const titulo = document.createElement("h5")
         titulo.innerHTML = producto.nombre
-
+        contenedorHijo.appendChild(titulo)
+  
+        //Creo la imagen
         const imagen = document.createElement("img")
          imagen.src= producto.imagen
-
+         contenedorHijo.appendChild(imagen)
+  
+         //Creo el contenedor con el precio
         const div = document.createElement("div")
         const precio = document.createElement("p")
         precio.innerHTML =producto.precio
         div.appendChild(precio)
+        contenedorHijo.appendChild(div)
 
-        const contenedor = document.getElementById('contenedorProducto')
-    
-        contenedor.appendChild(titulo)
-        contenedor.appendChild(imagen)
-        contenedor.appendChild(div)
+
+  console.log(contenedorHijo)
+  document.getElementById('contenedorProductos').appendChild(contenedorHijo);
     }
 
 
@@ -51,9 +60,9 @@ return false
 
 function render(data) {
     const html = data.map((elem, index) => {
-        return(`<div style="color: brown">
-            <strong style="color: blue">${elem.email}</strong> [${elem.time}] :
-            <em style="color: green">${elem.text}</em> </div>`)
+      return(`<div class="contenedorMensajes" >
+      <strong class="email" >${elem.email}</strong> [${elem.time}] :
+      <em class="texto" >${elem.text}</em> </div>`)
     }).join(" ");
     document.getElementById('messages').innerHTML = html;
   }
