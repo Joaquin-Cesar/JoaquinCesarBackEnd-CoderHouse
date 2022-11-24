@@ -1,8 +1,7 @@
+import * as fs from "fs"
 
-const fs = require('fs')
 
-
-class Producto {
+export class Producto {
  constructor(archivo)
     {
   this.archivo= archivo
@@ -21,8 +20,9 @@ save =  async (producto) =>{
         if (productosExistentes.length>0) {
             let identificador = productosExistentes[productosExistentes.length-1].id +1
             let product ={
-                id:identificador,
-                ...producto
+                
+                ...producto,
+                id:identificador
             }
             productosExistentes.push(product)
             await fs.promises.writeFile(this.archivo,JSON.stringify(productosExistentes,null,2))
@@ -32,8 +32,9 @@ save =  async (producto) =>{
         else{
             let identificador = 1 
             let product ={
-                id:identificador,
-                ...producto
+              
+                ...producto,  
+                id:identificador
             }
             productosExistentes.push(product)
             await fs.promises.writeFile(this.archivo,JSON.stringify(productosExistentes,null,2))
@@ -97,4 +98,3 @@ deleteAll = async (desicion)=>{
 
 
 
-module.exports= Producto;
