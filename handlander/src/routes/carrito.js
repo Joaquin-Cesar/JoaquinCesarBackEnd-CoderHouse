@@ -47,7 +47,7 @@ routeCarrito.post('/:id/productos', async(peticion, respuesta) => {
     const id = parseInt(peticion.params.id) - 1;
     const productoCarrito = peticion.body.productoCarrito
     const product = await producto.getById(productoCarrito)
-    const carrito = await carrito.getById(id)
+    const carrito =  carrito.getById(id)
     carrito.productos.push(product )
 
     const array = await producto.getall()
