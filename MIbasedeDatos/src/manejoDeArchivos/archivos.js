@@ -1,5 +1,5 @@
 
-const fs = require('fs')
+/*const fs = require('fs')
 
 
 class Producto {
@@ -97,4 +97,4 @@ deleteAll = async (desicion)=>{
 
 
 
-module.exports= Producto;
+module.exports= Producto;*/
