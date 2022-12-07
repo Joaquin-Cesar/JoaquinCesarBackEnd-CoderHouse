@@ -83,8 +83,8 @@ const datos =async () => {
 
     const consulta = await connectionMsql('productos');
     console.table(consulta); 
-    connectionMsql.destroy();
     
+    connectionMsql.destroy();
 
     
     if (!existsMensajes) {
@@ -103,7 +103,7 @@ const datos =async () => {
 
     const consulta2 = await connectionSlit3('mensajes');
     console.table(consulta2);    
- 
+    connectionSlit3.destroy();
 
 
 
@@ -152,7 +152,7 @@ io.on("connection", async (socket)=>{
   console.log("data",data)
    data.time = moment(new Date()).format('DD/MM/YYYY hh:mm:ss');
    await mensajes.save(data);
-   const listaMensajes = await mensajes.getall();
+   const listaMensajes = await mensajes.getAll();
    io.sockets.emit('messages', listaMensajes);
  });
 })

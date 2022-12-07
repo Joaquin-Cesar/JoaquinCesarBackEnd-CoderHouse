@@ -1,3 +1,4 @@
+const path = require("path")
 const options = {
     mysql: {
       client: 'mysql',
@@ -12,7 +13,7 @@ const options = {
     sqlite3: {
       client: 'sqlite3',
       connection: {
-        filename: '../db/mydb.sqlite'
+        filename: path.join(__dirname, '../db/mydb.sqlite')
       },
       useNullAsDefault: true
     }
